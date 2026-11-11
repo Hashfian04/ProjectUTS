@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "256637674761",
+    "firebase_url": "https://project-uts-40978-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "project-uts-40978",
+    "storage_bucket": "project-uts-40978.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:256637674761:android:eaa84c70c6b126f8101fd8",
+        "android_client_info": {
+          "package_name": "com.example.projectuts"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCb27SmmO4JyNaJiB15dGi1e3x8eLL9vVw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

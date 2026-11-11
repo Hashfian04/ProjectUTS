@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Theme Colors from Figma -->
+    <color name="primary_blue">#3B62F6</color>
+    <color name="primary_blue_dark">#2563EB</color>
+    <color name="primary_blue_light">#EEF2FF</color>
+    <color name="primary_blue_chip">#DBEAFE</color>
+    <color name="primary_blue_hover">#3151D4</color>
+
+    <!-- Text Colors -->
+    <color name="text_primary">#0F172A</color>
+    <color name="text_secondary">#64748B</color>
+    <color name="text_muted">#94A3B8</color>
+    <color name="text_hint">#A0AEC0</color>
+
+    <!-- Backgrounds & Borders -->
+    <color name="bg_page">#FAFAFC</color>
+    <color name="bg_surface">#FFFFFF</color>
+    <color name="bg_input">#F8FAFC</color>
+    <color name="card_stroke">#E2E8F0</color>
+    <color name="divider_color">#F1F5F9</color>
+
+    <!-- State & Alert Colors -->
+    <color name="danger_red">#DC2626</color>
+    <color name="danger_red_light">#FEE2E2</color>
+    <color name="danger_red_text">#991B1B</color>
+    <color name="input_error_bg">#FEF2F2</color>
+    <color name="input_error_stroke">#FCA5A5</color>
+
+    <!-- Category Pill Colors -->
+    <color name="badge_family_bg">#FFF7ED</color>
+    <color name="badge_family_text">#C2410C</color>
+
+    <color name="badge_friends_bg">#EFF6FF</color>
+    <color name="badge_friends_text">#1D4ED8</color>
+
+    <color name="badge_work_bg">#F5F3FF</color>
+    <color name="badge_work_text">#6D28D9</color>
+
+    <color name="badge_other_bg">#ECFDF5</color>
+    <color name="badge_other_text">#047857</color>
+
+    <!-- Avatar Backgrounds -->
+    <color name="avatar_blue_bg">#DBEAFE</color>
+    <color name="avatar_blue_text">#1E40AF</color>
+
+    <color name="avatar_amber_bg">#FEF3C7</color>
+    <color name="avatar_amber_text">#B45309</color>
+
+    <color name="avatar_purple_bg">#EDE9FE</color>
+    <color name="avatar_purple_text">#6B21A8</color>
+
+    <color name="avatar_green_bg">#D1FAE5</color>
+    <color name="avatar_green_text">#065F46</color>
+
+    <color name="avatar_rose_bg">#FFE4E6</color>
+    <color name="avatar_rose_text">#BE123C</color>
+</resources>

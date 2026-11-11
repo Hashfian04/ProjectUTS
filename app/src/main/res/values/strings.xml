@@ -1,0 +1,108 @@
+<resources>
+    <string name="app_name">ContactMate</string>
+    <string name="greeting_user">Good morning, %1$s</string>
+    <string name="your_people">Your people.</string>
+    <string name="total_contacts_fmt">%1$d total contacts</string>
+    <string name="search_hint">Search name or number</string>
+
+    <string name="all_contacts_header">ALL CONTACTS</string>
+    <string name="sort_az">A–Z</string>
+
+    <!-- Categories -->
+    <string name="category_all">All</string>
+    <string name="category_family">Family</string>
+    <string name="category_friends">Friends</string>
+    <string name="category_work">Work</string>
+    <string name="category_other">Other</string>
+
+    <!-- Navigation -->
+    <string name="nav_contacts">Contacts</string>
+    <string name="nav_categories">Categories</string>
+    <string name="nav_profile">Profile</string>
+
+    <!-- Contact Detail -->
+    <string name="contact_details_title">Contact details</string>
+    <string name="action_call">Call</string>
+    <string name="action_whatsapp">WhatsApp</string>
+    <string name="action_email">Email</string>
+    <string name="label_phone_number">Phone number</string>
+    <string name="label_email_address">Email address</string>
+    <string name="label_address">Address</string>
+    <string name="label_additional_notes">ADDITIONAL NOTES</string>
+    <string name="btn_edit_contact">Edit Contact</string>
+    <string name="btn_delete_contact">Delete Contact</string>
+
+    <!-- Add / Edit Contact -->
+    <string name="add_contact_title">Add contact</string>
+    <string name="edit_contact_title">Edit contact</string>
+    <string name="add_photo">Add a photo</string>
+    <string name="change_photo">Change photo</string>
+    <string name="photo_optional_desc">Optional · make them easy to find</string>
+
+    <string name="label_full_name_req">Full name *</string>
+    <string name="hint_full_name">Enter full name</string>
+    <string name="err_full_name_req">Full name is required.</string>
+
+    <string name="label_phone_number_req">Phone number *</string>
+    <string name="hint_phone_number">+1 (202) 555-0142</string>
+    <string name="err_phone_number_req">Enter a valid phone number, including area code.</string>
+
+    <string name="label_email_optional">Email · optional</string>
+    <string name="hint_email">name@example.com</string>
+    <string name="err_email_invalid">Enter a valid email address.</string>
+
+    <string name="label_address_optional">Address · optional</string>
+    <string name="hint_address">Street address, city</string>
+
+    <string name="label_category">Category</string>
+
+    <string name="label_notes_optional">Additional notes · optional</string>
+    <string name="hint_notes">Something to remember...</string>
+
+    <string name="btn_save_contact">Save Contact</string>
+    <string name="btn_save_changes">Save Changes</string>
+    <string name="btn_cancel">Cancel</string>
+
+    <!-- Delete Confirmation Dialog -->
+    <string name="dialog_delete_title">Delete contact?</string>
+    <string name="dialog_delete_msg">Are you sure you want to delete this contact? %1$s will be removed from your contacts. This can\'t be undone.</string>
+    <string name="btn_delete">Delete</string>
+
+    <!-- Empty State -->
+    <string name="empty_contacts_title">No contacts yet</string>
+    <string name="empty_contacts_subtitle">Keep your people close. Add your first contact and start building your circle.</string>
+    <string name="btn_add_first_contact">+ Add Contact</string>
+
+    <!-- Category Management -->
+    <string name="categories_title">Categories</string>
+    <string name="categories_hero_heading">A place for everyone.</string>
+    <string name="categories_hero_desc">Keep your circle organized with categories that make sense to you.</string>
+    <string name="categories_count_fmt">%1$d categories</string>
+    <string name="contacts_count_fmt">%1$d contacts</string>
+    <string name="btn_add_category">+ Add category</string>
+    <string name="categories_footer_note">Deleting a category keeps its contacts. You\'ll choose a new category before continuing.</string>
+
+    <!-- Profile & Settings -->
+    <string name="profile_title">Profile &amp; settings</string>
+    <string name="profile_subtitle">Your personal contact space</string>
+    <string name="profile_stats_fmt">%1$d contacts · %2$d categories</string>
+    <string name="section_personal_info">PERSONAL INFORMATION</string>
+    <string name="section_application">APPLICATION</string>
+    <string name="profile_display_name">Display name</string>
+    <string name="profile_name_val">Alex Taylor</string>
+    <string name="profile_email_label">Email address</string>
+    <string name="profile_email_val">alex.taylor@example.com</string>
+    <string name="profile_storage_label">Contact storage</string>
+    <string name="profile_storage_val">Firebase Realtime Database</string>
+    <string name="profile_about_label">About ContactMate</string>
+    <string name="profile_about_val">Personal contact management · v1.0.0</string>
+    <string name="profile_privacy_label">Privacy</string>
+    <string name="profile_privacy_val">Your contacts are synced with Firebase</string>
+    <string name="profile_slogan">A little closer to your people.</string>
+
+    <!-- Edit Profile -->
+    <string name="edit_profile_title">Edit profile</string>
+    <string name="btn_edit_profile">Edit Profile</string>
+    <string name="btn_save_profile">Save Profile</string>
+    <string name="profile_updated">Profile updated successfully</string>
+</resources>

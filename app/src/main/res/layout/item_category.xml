@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    android:background="@drawable/bg_rounded_card"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="16dp">
+
+    <!-- Icon Box -->
+    <ImageView
+        android:id="@+id/ivCategoryIcon"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@drawable/bg_button_secondary"
+        android:backgroundTint="@color/badge_friends_bg"
+        android:padding="12dp"
+        android:src="@drawable/ic_cat_friends"
+        app:tint="@color/badge_friends_text"
+        android:contentDescription="Category Icon" />
+
+    <!-- Title & Count -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="14dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvCategoryName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_primary"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Friends" />
+
+        <TextView
+            android:id="@+id/tvCategoryCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp"
+            tools:text="2 contacts" />
+    </LinearLayout>
+
+    <!-- Action Edit & Delete Icons -->
+    <ImageView
+        android:id="@+id/btnEditCategory"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="6dp"
+        android:src="@drawable/ic_edit"
+        app:tint="@color/text_muted"
+        android:contentDescription="Edit Category" />
+
+    <ImageView
+        android:id="@+id/btnDeleteCategory"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="4dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="6dp"
+        android:src="@drawable/ic_delete"
+        app:tint="@color/danger_red"
+        android:contentDescription="Delete Category" />
+
+</LinearLayout>
