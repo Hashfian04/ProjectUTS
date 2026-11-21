@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.projectuts.R;
 import com.example.projectuts.adapter.ContactAdapter;
+import com.example.projectuts.data.model.Category;
 import com.example.projectuts.data.model.Contact;
 import com.example.projectuts.data.repository.ContactRepository;
 import com.example.projectuts.databinding.ActivityMainBinding;
@@ -24,6 +27,7 @@ import com.example.projectuts.ui.profile.ProfileActivity;
 import com.example.projectuts.utils.AvatarUtils;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,9 +37,12 @@ public class MainActivity extends AppCompatActivity {
     private ContactAdapter adapter;
     private ValueEventListener realtimeListener;
     private ValueEventListener profileListener;
+    private ValueEventListener categoriesListener;
 
     private TextView selectedChip;
     private String selectedCategory = "All";
+
+    private final List<String> dynamicCategories = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
 
         setupRecyclerView();
         setupSearch();
-        setupCategoryChips();
         setupClickListeners();
         setupBottomNav();
     }
@@ -57,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         listenContacts();
         listenProfile();
+        listenCategories();
     }
 
     @Override
@@ -69,6 +76,10 @@ public class MainActivity extends AppCompatActivity {
         if (profileListener != null) {
             repository.removeProfileListener(profileListener);
             profileListener = null;
+        }
+        if (categoriesListener != null) {
+            repository.removeCategoriesListener(categoriesListener);
+            categoriesListener = null;
         }
     }
 
@@ -112,6 +123,72 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void listenCategories() {
+        categoriesListener = repository.getCategoriesRealtime(new ContactRepository.OnCategoriesLoadedListener() {
+            @Override
+            public void onSuccess(List<Category> categories) {
+                dynamicCategories.clear();
+                dynamicCategories.add("All");
+                if (categories != null) {
+                    for (Category cat : categories) {
+                        if (cat.getName() != null && !cat.getName().isEmpty()) {
+                            dynamicCategories.add(cat.getName());
+                        }
+                    }
+                }
+                renderCategoryChips();
+            }
+
+            @Override
+            public void onError(Exception e) {}
+        });
+    }
+
+    private void renderCategoryChips() {
+        binding.chipGroup.removeAllViews();
+        selectedChip = null;
+
+        for (String catName : dynamicCategories) {
+            TextView chipView = new TextView(this);
+            chipView.setText(catName);
+            chipView.setTextSize(13);
+            chipView.setGravity(Gravity.CENTER);
+
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    dpToPx(36)
+            );
+            params.setMargins(0, 0, dpToPx(8), 0);
+            chipView.setLayoutParams(params);
+            chipView.setPadding(dpToPx(18), 0, dpToPx(18), 0);
+
+            boolean isSelected = catName.equalsIgnoreCase(selectedCategory);
+            if (isSelected) {
+                chipView.setBackgroundResource(R.drawable.bg_rounded_chip_selected);
+                chipView.setTextColor(ContextCompat.getColor(this, R.color.white));
+                selectedChip = chipView;
+            } else {
+                chipView.setBackgroundResource(R.drawable.bg_rounded_chip_unselected);
+                chipView.setTextColor(ContextCompat.getColor(this, R.color.text_secondary));
+            }
+
+            chipView.setOnClickListener(v -> selectChip(chipView, catName));
+
+            binding.chipGroup.addView(chipView);
+        }
+
+        // Default to "All" if current selected category is no longer in list
+        if (selectedChip == null && !dynamicCategories.isEmpty()) {
+            selectedCategory = "All";
+            renderCategoryChips();
+        }
+    }
+
+    private int dpToPx(int dp) {
+        float density = getResources().getDisplayMetrics().density;
+        return Math.round(dp * density);
+    }
+
     private void updateUIState(int totalCount) {
         binding.tvTotalCountNum.setText(String.valueOf(totalCount));
 
@@ -150,16 +227,6 @@ public class MainActivity extends AppCompatActivity {
             binding.rvContacts.setVisibility(View.VISIBLE);
             binding.layoutEmptyState.setVisibility(View.GONE);
         }
-    }
-
-    private void setupCategoryChips() {
-        selectedChip = binding.chipAll;
-
-        binding.chipAll.setOnClickListener(v -> selectChip(binding.chipAll, "All"));
-        binding.chipFamily.setOnClickListener(v -> selectChip(binding.chipFamily, "Family"));
-        binding.chipFriends.setOnClickListener(v -> selectChip(binding.chipFriends, "Friends"));
-        binding.chipWork.setOnClickListener(v -> selectChip(binding.chipWork, "Work"));
-        binding.chipOther.setOnClickListener(v -> selectChip(binding.chipOther, "Other"));
     }
 
     private void selectChip(TextView chipView, String category) {

@@ -242,7 +242,7 @@
                             android:textColor="@color/text_primary"
                             android:textSize="14sp"
                             android:textStyle="bold"
-                            tools:text="+1 (202) 555-0142" />
+                            tools:text="+62 812-3456-7890" />
                     </LinearLayout>
                 </LinearLayout>
 

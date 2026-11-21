@@ -44,8 +44,8 @@
     <string name="err_full_name_req">Full name is required.</string>
 
     <string name="label_phone_number_req">Phone number *</string>
-    <string name="hint_phone_number">+1 (202) 555-0142</string>
-    <string name="err_phone_number_req">Enter a valid phone number, including area code.</string>
+    <string name="hint_phone_number">+62 812-3456-7890</string>
+    <string name="err_phone_number_req">Enter a valid phone number (e.g. +62 812-3456-7890 or 081234567890).</string>
 
     <string name="label_email_optional">Email · optional</string>
     <string name="hint_email">name@example.com</string>

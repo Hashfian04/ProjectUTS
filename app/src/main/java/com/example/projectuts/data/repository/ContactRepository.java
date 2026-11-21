@@ -77,7 +77,7 @@ public class ContactRepository {
                         Log.e(TAG, "Error parsing contact child: " + child.getKey(), e);
                     }
                 }
-                contacts.sort((c1, c2) -> {
+                java.util.Collections.sort(contacts, (c1, c2) -> {
                     String n1 = c1.getName() != null ? c1.getName() : "";
                     String n2 = c2.getName() != null ? c2.getName() : "";
                     return n1.compareToIgnoreCase(n2);
@@ -166,18 +166,62 @@ public class ContactRepository {
                 .addOnFailureListener(listener::onError);
     }
 
-    public void updateCategory(String categoryId, String newName, final OnActionCompleteListener listener) {
+    public void updateCategoryAndContacts(String categoryId, String oldName, String newName, final OnActionCompleteListener listener) {
         Map<String, Object> map = new HashMap<>();
         map.put("name", newName);
 
         categoriesRef.child(categoryId).updateChildren(map)
-                .addOnSuccessListener(aVoid -> listener.onSuccess())
+                .addOnSuccessListener(aVoid -> {
+                    if (oldName != null && !oldName.equalsIgnoreCase(newName)) {
+                        contactsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                for (DataSnapshot child : snapshot.getChildren()) {
+                                    String cat = child.child("category").getValue(String.class);
+                                    if (cat != null && cat.equalsIgnoreCase(oldName)) {
+                                        child.getRef().child("category").setValue(newName);
+                                    }
+                                }
+                                listener.onSuccess();
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                                listener.onSuccess();
+                            }
+                        });
+                    } else {
+                        listener.onSuccess();
+                    }
+                })
                 .addOnFailureListener(listener::onError);
     }
 
-    public void deleteCategory(String categoryId, final OnActionCompleteListener listener) {
+    public void deleteCategoryAndMigrateContacts(String categoryId, String oldName, final OnActionCompleteListener listener) {
         categoriesRef.child(categoryId).removeValue()
-                .addOnSuccessListener(aVoid -> listener.onSuccess())
+                .addOnSuccessListener(aVoid -> {
+                    if (oldName != null) {
+                        contactsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                for (DataSnapshot child : snapshot.getChildren()) {
+                                    String cat = child.child("category").getValue(String.class);
+                                    if (cat != null && cat.equalsIgnoreCase(oldName)) {
+                                        child.getRef().child("category").setValue("Other");
+                                    }
+                                }
+                                listener.onSuccess();
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                                listener.onSuccess();
+                            }
+                        });
+                    } else {
+                        listener.onSuccess();
+                    }
+                })
                 .addOnFailureListener(listener::onError);
     }
 

@@ -169,13 +169,15 @@ public class CategoryActivity extends AppCompatActivity {
         input.setText(category.getName());
         input.setPadding(40, 24, 40, 24);
 
+        final String oldName = category.getName();
+
         new AlertDialog.Builder(this)
                 .setTitle("Edit Category")
                 .setView(input)
                 .setPositiveButton("Save", (dialog, which) -> {
                     String updatedName = input.getText().toString().trim();
                     if (!updatedName.isEmpty() && category.getId() != null) {
-                        repository.updateCategory(category.getId(), updatedName, new ContactRepository.OnActionCompleteListener() {
+                        repository.updateCategoryAndContacts(category.getId(), oldName, updatedName, new ContactRepository.OnActionCompleteListener() {
                             @Override
                             public void onSuccess() {
                                 Toast.makeText(CategoryActivity.this, "Category updated", Toast.LENGTH_SHORT).show();
@@ -193,12 +195,13 @@ public class CategoryActivity extends AppCompatActivity {
     }
 
     private void showDeleteCategoryDialog(Category category) {
+        final String oldName = category.getName();
         new AlertDialog.Builder(this)
                 .setTitle("Delete Category?")
                 .setMessage("Are you sure you want to delete category '" + category.getName() + "'?")
                 .setPositiveButton("Delete", (dialog, which) -> {
                     if (category.getId() != null) {
-                        repository.deleteCategory(category.getId(), new ContactRepository.OnActionCompleteListener() {
+                        repository.deleteCategoryAndMigrateContacts(category.getId(), oldName, new ContactRepository.OnActionCompleteListener() {
                             @Override
                             public void onSuccess() {
                                 Toast.makeText(CategoryActivity.this, "Category deleted", Toast.LENGTH_SHORT).show();
